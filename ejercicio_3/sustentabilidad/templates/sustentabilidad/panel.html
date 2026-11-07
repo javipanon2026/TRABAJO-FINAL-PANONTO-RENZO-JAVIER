@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTech Solutions | Sustentabilidad</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f2f6f3; color: #20352a; }
+        header { background: #176b45; color: white; padding: 28px 8%; }
+        main { max-width: 950px; margin: 35px auto; padding: 0 20px; }
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+        .card { background: white; padding: 22px; border-radius: 12px; box-shadow: 0 3px 12px #00000012; }
+        .valor { font-size: 1.8rem; font-weight: bold; color: #176b45; }
+        li { padding: 8px 0; }
+        footer { text-align: center; padding: 25px; color: #627268; }
+    </style>
+</head>
+<body>
+<header>
+    <h1>EcoTech Solutions</h1>
+    <p>Panel administrativo de sustentabilidad y emisiones</p>
+</header>
+<main>
+    <h2>Panel de sustentabilidad</h2>
+    <section class="cards">
+        <article class="card">
+            <h3>Emisiones globales</h3>
+            <p class="valor">{{ total_emisiones|floatformat:2 }} kg CO₂</p>
+        </article>
+        <article class="card">
+            <h3>Mayor consumo</h3>
+            <p class="valor">{{ planta_mayor_consumo }}</p>
+            <p>{{ mayor_consumo_kwh|floatformat:2 }} kWh</p>
+        </article>
+    </section>
+    <section class="card" style="margin-top: 20px;">
+        <h3>Consumo por planta</h3>
+        <ul>
+            {% for planta, consumo in consumos_por_planta.items %}
+                <li><strong>{{ planta }}</strong>: {{ consumo|floatformat:2 }} kWh</li>
+            {% empty %}
+                <li>No hay registros disponibles.</li>
+            {% endfor %}
+        </ul>
+    </section>
+</main>
+<footer>EcoTech Solutions · Gestión responsable de recursos</footer>
+</body>
+</html>
